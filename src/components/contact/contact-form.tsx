@@ -1,7 +1,9 @@
-import z from "zod";
+import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
 import { ArrowRight } from "lucide-react";
+import { useForm } from "react-hook-form";
+import z from "zod";
+import { RotateLoader } from "react-spinners";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -15,6 +17,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useState } from "react";
 
 const formSchema = z.object({
     email: z.string().email({
@@ -24,7 +27,7 @@ const formSchema = z.object({
         message: "Name must be at least 2 characters",
     }),
     company: z.string().optional(),
-    subject: z.string().min(5, {
+    subject: z.string().min(3, {
         message: "Subject must be at least 5 characters",
     }),
     message: z.string().min(10, {
@@ -33,6 +36,10 @@ const formSchema = z.object({
 });
 
 function ContactForm() {
+    const [loading, setLoading] = useState(false);
+    const [error, setError] = useState<string | null>(null);
+    const [message, setMessage] = useState<string | null>(null);
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -44,16 +51,53 @@ function ContactForm() {
         },
     });
 
+    useEffect(() => {
+        const preservedForm = sessionStorage.getItem("form") as string | null;
+        if (preservedForm) {
+            form.reset(JSON.parse(preservedForm));
+        }
+    }, []);
+
     function onSubmit(data: z.infer<typeof formSchema>) {
-        console.log(data);
+        setLoading(true);
+        setError(null);
+        setMessage(null);
+
+        emailjs
+            .send(
+                import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
+                import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string,
+                data,
+                { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string }
+            )
+            .then(() => {
+                setMessage("Message sent!");
+                form.reset();
+            })
+            .catch((e) => {
+                console.log(e);
+                setError("Failed to send message. Please try again later.");
+            })
+            .finally(() => {
+                setLoading(false);
+            });
     }
 
     return (
         <>
             <Form {...form}>
                 <form
-                    onSubmit={form.handleSubmit(onSubmit)}
+                    onSubmit={(e) => {
+                        e.preventDefault();
+                        form.handleSubmit(onSubmit)();
+                    }}
                     className="space-y-8 text-start"
+                    onChange={() => {
+                        sessionStorage.setItem(
+                            "form",
+                            JSON.stringify(form.getValues())
+                        );
+                    }}
                 >
                     <FormField
                         control={form.control}
@@ -175,16 +219,47 @@ function ContactForm() {
                             </FormItem>
                         )}
                     />
-                    <Button
-                        type="submit"
-                        className="float-right group hover:shadow-glow transition-shadow hover:bg-primary"
-                    >
-                        Submit{" "}
-                        <ArrowRight
-                            size={16}
-                            className="ml-2 group-hover:-rotate-45 transition-transform"
+                    <div className="align-middle justify-between">
+                        <RotateLoader
+                            loading={loading}
+                            color={
+                                window.document.documentElement.classList.contains(
+                                    "dark"
+                                )
+                                    ? "#fff"
+                                    : "#000"
+                            }
+                            speedMultiplier={0.75}
+                            size={10}
+                            className="inline-block"
                         />
-                    </Button>
+                        {error ? (
+                            <>
+                                <p className="text-destructive font-bold">
+                                    {error}
+                                </p>
+                            </>
+                        ) : message ? (
+                            <>
+                                <p className="text-accent font-bold">
+                                    {message}
+                                </p>
+                            </>
+                        ) : (
+                            <span />
+                        )}
+                        <Button
+                            type="submit"
+                            className="float-right group hover:shadow-glow transition-shadow hover:bg-primary self-end"
+                            disabled={loading}
+                        >
+                            Submit
+                            <ArrowRight
+                                size={16}
+                                className="ml-2 group-hover:-rotate-45 transition-transform"
+                            />
+                        </Button>
+                    </div>
                 </form>
             </Form>
         </>
