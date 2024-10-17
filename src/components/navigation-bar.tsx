@@ -21,7 +21,6 @@ function NavBar({ currentPage, className }: NavBarProps) {
 
     const pages = [
         { name: "Home", route: "/" },
-        { name: "About", route: "/about" },
         { name: "Let's Talk", route: "/contact" },
     ];
 
@@ -97,7 +96,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
                     src="/icon.svg"
                     alt="Logo"
                     onClick={() => navigate("/")}
-                    className="h-16 cursor-pointer"
+                    className="h-16 cursor-pointer mr-5"
                 />
                 <div
                     className={"relative flex flex-row items-center space-x-5"}

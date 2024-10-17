@@ -12,7 +12,7 @@ function Contact() {
     return (
         <div className="flex flex-col">
             <NavBar currentPage="Let's Talk" className="float-right" />
-            <Card className="my-5 p-5 w-2/3 self-center border-none shadow-none">
+            <Card className="my-5 p-5 w-[80%] self-center border-none shadow-none">
                 <CardHeader>
                     <CardTitle>Let's get in touch!</CardTitle>
                     <CardDescription>

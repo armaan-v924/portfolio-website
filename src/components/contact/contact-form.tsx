@@ -136,7 +136,7 @@ function ContactForm() {
                                     <Input
                                         {...field}
                                         type="text"
-                                        placeholder={"Human McPerson"}
+                                        placeholder={"Humany McPersonface"}
                                     />
                                 </FormControl>
                                 <FormDescription>
