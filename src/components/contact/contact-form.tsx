@@ -63,6 +63,10 @@ function ContactForm() {
         setError(null);
         setMessage(null);
 
+        if (data.company === "" || data.company === undefined) {
+            data.company = "N/A";
+        }
+
         emailjs
             .send(
                 import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
