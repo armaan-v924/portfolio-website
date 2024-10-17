@@ -13,8 +13,9 @@ import {
     CardHeader,
     CardTitle,
 } from "./ui/card";
-import { GitHubLogoIcon } from "@radix-ui/react-icons";
+import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+import AlationLogo from "@/images/alation.svg?react";
 
 function Home() {
     // Scroll tracking for the hero section
@@ -40,6 +41,7 @@ function Home() {
     // Reference to the next section
     const nextSectionRef = useRef<HTMLDivElement>(null);
     const projectsRef = useRef<HTMLDivElement>(null);
+    const experienceRef = useRef<HTMLDivElement>(null);
 
     // Function to handle click on the ArrowDown icon
     const scrollToNextSection = () => {
@@ -71,28 +73,38 @@ function Home() {
                             passionate about solving complex problems and
                             creating impactful software solutions.
                         </p>
-                        <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row-reverse md:space-x-reverse md:space-x-2 md:items-center">
-                            <Button
-                                className="group"
-                                onClick={() => navigate("/contact")}
-                            >
-                                Let's get in touch
-                                <ArrowRight
-                                    size={16}
-                                    className="ml-2 group-hover:-rotate-45 transition-transform"
-                                />
-                            </Button>
-                            <Button
-                                variant={"secondary"}
-                                onClick={() => navigate("/resume")}
-                                className="group"
-                            >
-                                Check out my Resume
-                                <ArrowRight
-                                    size={16}
-                                    className="ml-2 group-hover:-rotate-45 transition-transform"
-                                />
-                            </Button>
+                        <div className="flex flex-col md:flex-row md:justify-between space-y-2">
+                            <div className="flex flex-row space-x-1 md:items-center">
+                                <Button variant={"outline"} className="w-[50%]">
+                                    <GitHubLogoIcon className="" />
+                                </Button>
+                                <Button variant={"outline"} className="w-[50%]">
+                                    <LinkedInLogoIcon className="" />
+                                </Button>
+                            </div>
+                            <div className="flex flex-col space-y-2 md:space-y-0 md:flex-row-reverse md:space-x-reverse md:space-x-2 md:items-center">
+                                <Button
+                                    className="group"
+                                    onClick={() => navigate("/contact")}
+                                >
+                                    Let's get in touch
+                                    <ArrowRight
+                                        size={16}
+                                        className="ml-2 group-hover:-rotate-45 transition-transform"
+                                    />
+                                </Button>
+                                <Button
+                                    variant={"secondary"}
+                                    onClick={() => navigate("/resume")}
+                                    className="group"
+                                >
+                                    Check out my Resume
+                                    <ArrowRight
+                                        size={16}
+                                        className="ml-2 group-hover:-rotate-45 transition-transform"
+                                    />
+                                </Button>
+                            </div>
                         </div>
                     </motion.div>
                     {/* ArrowDown Icon */}
@@ -151,6 +163,8 @@ function Home() {
             {/* Section 2 */}
             <div ref={projectsRef}>
                 <ParallaxSection
+                    showArrow
+                    nextSectionRef={experienceRef}
                     header={
                         <h2 className="section-title text-left font-bold text-5xl tracking-wide">
                             Projects
@@ -296,7 +310,64 @@ function Home() {
                     </div>
                 </ParallaxSection>
             </div>
-            {}
+
+            <div ref={experienceRef}>
+                <ParallaxSection
+                    header={
+                        <h2 className="section-title text-left font-bold text-5xl tracking-wide">
+                            My Professional Experience
+                        </h2>
+                    }
+                >
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                        <Card className="">
+                            <CardHeader className="">
+                                <CardTitle>
+                                    <AlationLogo className="inline-block w-56 fill-alation" />
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <h3 className="font-semibold">
+                                    Total Rewards Intern, Software Engineering
+                                </h3>
+                                <p className="font-light mb-3">
+                                    Alation | January 2024 - Present
+                                </p>
+                                <div className="text-start">
+                                    <ul className="font-light list-outside space-y-2">
+                                        <li>
+                                            Developed a full stack web
+                                            application to help managers make
+                                            data-driven decisions about employee
+                                            compensation
+                                        </li>
+                                        <li>
+                                            Implemented a custom data pipeline
+                                            to ingest and process data from
+                                            multiple market data sources
+                                        </li>
+                                        <li>
+                                            Created a visual dashboard to
+                                            display employee compensation
+                                            against market benchmarks and
+                                            predict future stock grants based on
+                                            performance and target compensation
+                                            percentile
+                                        </li>
+                                    </ul>
+                                </div>
+                            </CardContent>
+                            <CardFooter>
+                                <span className="mr-2">Tech Stack:</span>
+                                <p className="font-light">
+                                    React, TypeScript, Flask, Python, Pandas,
+                                    Okta, SentenceTransformers
+                                </p>
+                            </CardFooter>
+                        </Card>
+                    </div>
+                </ParallaxSection>
+            </div>
         </>
     );
 }
