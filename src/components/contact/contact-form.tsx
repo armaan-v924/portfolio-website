@@ -63,6 +63,10 @@ function ContactForm() {
         setError(null);
         setMessage(null);
 
+        if (data.company === "" || data.company === undefined) {
+            data.company = "N/A";
+        }
+
         emailjs
             .send(
                 import.meta.env.VITE_EMAILJS_SERVICE_ID as string,
@@ -76,7 +80,9 @@ function ContactForm() {
             })
             .catch((e) => {
                 console.log(e);
-                setError("Failed to send message. Please try again later.");
+                setError(
+                    "Failed to send message. Please try again later, or contact me directly at me@armaanv.dev"
+                );
             })
             .finally(() => {
                 setLoading(false);
@@ -136,7 +142,7 @@ function ContactForm() {
                                     <Input
                                         {...field}
                                         type="text"
-                                        placeholder={"Human McPerson"}
+                                        placeholder={"Humany McPersonface"}
                                     />
                                 </FormControl>
                                 <FormDescription>
@@ -219,7 +225,7 @@ function ContactForm() {
                             </FormItem>
                         )}
                     />
-                    <div className="align-middle justify-between">
+                    <div className="flex align-middle justify-between">
                         <RotateLoader
                             loading={loading}
                             color={

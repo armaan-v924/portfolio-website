@@ -21,8 +21,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
 
     const pages = [
         { name: "Home", route: "/" },
-        { name: "About", route: "/about" },
-        { name: "Contact", route: "/contact" },
+        { name: "Let's Talk", route: "/contact" },
     ];
 
     // Refs
@@ -41,7 +40,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
         const container = containerRef.current;
 
         if (button && container) {
-            const relativeX = button.offsetLeft - button.offsetWidth / 7;
+            const relativeX = button.offsetLeft - button.offsetWidth / 7 - 8;
             setXPosition(relativeX);
         }
     };
@@ -86,19 +85,21 @@ function NavBar({ currentPage, className }: NavBarProps) {
     }, [hoveredPage, currentPage]);
 
     return (
-        <div className="flex flex-row place-items-center justify-between">
+        <div
+            className={cn(
+                "flex flex-row place-items-center justify-between",
+                className
+            )}
+        >
             <div className="flex flex-row">
                 <img
                     src="/icon.svg"
                     alt="Logo"
                     onClick={() => navigate("/")}
-                    className="h-16 cursor-pointer"
+                    className="h-16 cursor-pointer mr-5"
                 />
                 <div
-                    className={cn(
-                        "relative flex flex-row items-center space-x-5",
-                        className
-                    )}
+                    className={"relative flex flex-row items-center space-x-5"}
                     ref={containerRef}
                 >
                     {xPosition !== null && (
