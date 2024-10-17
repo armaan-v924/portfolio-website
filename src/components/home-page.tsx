@@ -102,7 +102,7 @@ function Home() {
                                 </Button>
                                 <Button
                                     variant={"secondary"}
-                                    onClick={() => navigate("/resume.pdf")}
+                                    onClick={() => window.open("/resume.pdf")}
                                     className="group"
                                 >
                                     Check out my Resume
