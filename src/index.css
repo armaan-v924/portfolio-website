@@ -30,6 +30,7 @@
         --chart-5: 27 87% 67%;
         --radius: 0.5rem;
         --alation-color: 58 63 77;
+        --apple-color: 0 0 0;
     }
     .dark {
         --background: 240 10% 3.9%;
@@ -57,6 +58,7 @@
         --chart-4: 280 65% 60%;
         --chart-5: 340 75% 55%;
         --alation-color: 255 255 255;
+        --apple-color: 255 255 255;
     }
 }
 

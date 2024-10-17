@@ -56,6 +56,7 @@ export default {
   				'5': 'hsl(var(--chart-5))'
   			},
 			alation: 'rgb(var(--alation-color))',
+			apple: 'rgb(var(--apple-color))',
   		}
   	}
   },

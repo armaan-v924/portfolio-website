@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState, useLayoutEffect } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
@@ -17,16 +17,41 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 
-    const { scrollYProgress } = useScroll({
-        target: ref,
-        offset: ["start center", "end center"],
-    });
+    // Get the vertical scroll position
+    const { scrollY } = useScroll();
 
-    const yHeader = useTransform(scrollYProgress, [0, 1], [-20, 20]);
-    const yContent = useTransform(scrollYProgress, [0, 1], [-50, 50]);
+    // States to hold the element's position and height
+    const [elementTop, setElementTop] = useState(0);
+    const [elementHeight, setElementHeight] = useState(0);
+
+    // Measure the element's position and height
+    useLayoutEffect(() => {
+        const measureElement = () => {
+            if (ref.current) {
+                const rect = ref.current.getBoundingClientRect();
+                setElementTop(rect.top + window.scrollY);
+                setElementHeight(rect.height);
+            }
+        };
+
+        measureElement();
+        window.addEventListener("resize", measureElement);
+
+        return () => {
+            window.removeEventListener("resize", measureElement);
+        };
+    }, []);
+
+    // Calculate scroll progress
+    const start = elementTop - window.innerHeight;
+    const end = elementTop + elementHeight;
+    const scrollProgress = useTransform(scrollY, [start, end], [0, 1]);
+
+    const yHeader = useTransform(scrollProgress, [0, 1], [-20, 20]);
+    const yContent = useTransform(scrollProgress, [0, 1], [-50, 50]);
     const opacity = useTransform(
-        scrollYProgress,
-        [0, 0.25, 0.5, 1],
+        scrollProgress,
+        [0, 0.25, 0.75, 1],
         [0, 1, 1, 0]
     );
 

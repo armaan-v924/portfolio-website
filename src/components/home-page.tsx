@@ -15,7 +15,13 @@ import {
 } from "./ui/card";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
+
+//@ts-ignore
 import AlationLogo from "@/images/alation.svg?react";
+//@ts-ignore
+import AppleLogo from "@/images/apple.svg?react";
+//@ts-ignore
+import UTSeal from "@/images/ut_austin.svg?react";
 
 function Home() {
     // Scroll tracking for the hero section
@@ -42,6 +48,7 @@ function Home() {
     const nextSectionRef = useRef<HTMLDivElement>(null);
     const projectsRef = useRef<HTMLDivElement>(null);
     const experienceRef = useRef<HTMLDivElement>(null);
+    const eduRef = useRef<HTMLDivElement>(null);
 
     // Function to handle click on the ArrowDown icon
     const scrollToNextSection = () => {
@@ -137,7 +144,7 @@ function Home() {
                         </h2>
                     }
                     showArrow
-                    nextSectionRef={projectsRef}
+                    nextSectionRef={eduRef}
                 >
                     <p className="section-subtitle text-left text-lg mt-4">
                         I'm currently a student at UT Austin studying Electrical
@@ -160,7 +167,53 @@ function Home() {
                 </ParallaxSection>
             </div>
 
-            {/* Section 2 */}
+            <div ref={eduRef}>
+                <ParallaxSection
+                    showArrow
+                    nextSectionRef={projectsRef}
+                    header={
+                        <h2 className="section-title text-left font-bold text-5xl tracking-wide">
+                            Education
+                        </h2>
+                    }
+                >
+                    <Card className="mt-4">
+                        <CardHeader>
+                            <CardTitle>
+                                <UTSeal className="inline-block size-60 m-4" />
+                            </CardTitle>
+                            <h3 className="font-bold">
+                                University of Texas at Austin
+                            </h3>
+                            <CardDescription>
+                                Bachelor of Science in Electrical and Computer
+                                Engineering
+                            </CardDescription>
+                        </CardHeader>
+                        <CardContent>
+                            <p className="font-light">
+                                GPA:&nbsp;
+                                <span className="font-semibold">3.62/4.0</span>
+                            </p>
+                            <p className="font-light">
+                                Graduation Date:&nbsp;
+                                <span className="font-semibold">May 2025</span>
+                            </p>
+                        </CardContent>
+                        <CardFooter>
+                            <p className="font-semibold">
+                                Relevant Courses:&nbsp;
+                            </p>
+                            <p className="font-light">
+                                Algorithms, Computer Architecture, Software
+                                Engineering, Embedded Systems, Digital Logic
+                                Design
+                            </p>
+                        </CardFooter>
+                    </Card>
+                </ParallaxSection>
+            </div>
+
             <div ref={projectsRef}>
                 <ParallaxSection
                     showArrow
@@ -319,10 +372,10 @@ function Home() {
                         </h2>
                     }
                 >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
                         <Card className="">
                             <CardHeader className="">
-                                <CardTitle>
+                                <CardTitle className="h-24">
                                     <AlationLogo className="inline-block w-56 fill-alation" />
                                 </CardTitle>
                             </CardHeader>
@@ -331,37 +384,135 @@ function Home() {
                                     Total Rewards Intern, Software Engineering
                                 </h3>
                                 <p className="font-light mb-3">
-                                    Alation | January 2024 - Present
+                                    Alation | February 2024 - Present | Remote
                                 </p>
                                 <div className="text-start">
                                     <ul className="font-light list-outside space-y-2">
                                         <li>
-                                            Developed a full stack web
-                                            application to help managers make
-                                            data-driven decisions about employee
-                                            compensation
+                                            Spearheading the development of a
+                                            proprietary internal tool at Alation
+                                            designed to optimize the comparison
+                                            of market data for employee
+                                            compensation, ensuring competitive
+                                            and equitable salary and share grant
+                                            decisions
                                         </li>
                                         <li>
-                                            Implemented a custom data pipeline
-                                            to ingest and process data from
-                                            multiple market data sources
+                                            Solely responsible for the
+                                            integration and analysis of complex
+                                            datasets to accurately assess
+                                            employee performance percentiles,
+                                            directly influencing equity
+                                            distribution and incentivization
+                                            strategies
                                         </li>
                                         <li>
-                                            Created a visual dashboard to
-                                            display employee compensation
-                                            against market benchmarks and
-                                            predict future stock grants based on
-                                            performance and target compensation
-                                            percentile
+                                            Utilizing advanced programming and
+                                            data analysis skills to create a
+                                            robust solution that automates the
+                                            evaluation of compensation
+                                            benchmarks, streamlining the
+                                            decision-making process for to
+                                            allocation of employee shares
                                         </li>
                                     </ul>
                                 </div>
                             </CardContent>
                             <CardFooter>
-                                <span className="mr-2">Tech Stack:</span>
+                                <span className="mr-2">Tech Stack</span>
                                 <p className="font-light">
                                     React, TypeScript, Flask, Python, Pandas,
                                     Okta, SentenceTransformers
+                                </p>
+                            </CardFooter>
+                        </Card>
+                        <Card className="flex flex-col">
+                            <CardHeader className="flex-grow-0">
+                                <CardTitle className="h-24">
+                                    <AppleLogo className="inline-block mt-4 w-56 h-14 fill-apple" />
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="flex-grow">
+                                <h3 className="font-semibold">
+                                    T1 iOS Technical Support Advisor, AppleCare
+                                </h3>
+                                <p className="font-light mb-3">
+                                    Apple | June 2022 - June 2023 | Remote
+                                </p>
+                                <div className="text-start">
+                                    <ul className="font-light list-outside space-y-2">
+                                        <li>
+                                            Delivered exceptional technical
+                                            support for Apple’s suite of mobile
+                                            devices, earning a 97% customer
+                                            satisfaction rating
+                                        </li>
+                                        <li>
+                                            Managed high-volume call
+                                            environments, skillfully addressing
+                                            over 350 customer issues per quarter
+                                        </li>
+                                        <li>
+                                            Documented interactions with detail
+                                            and accuracy, providing valuable
+                                            data for product improvement
+                                            initiatives
+                                        </li>
+                                    </ul>
+                                </div>
+                            </CardContent>
+                            <CardFooter className="flex-grow-0">
+                                <span className="mr-2">Skills Used</span>
+                                <p className="font-light">
+                                    Customer Service, Technical Support,
+                                    Troubleshooting, Documentation.
+                                </p>
+                            </CardFooter>
+                        </Card>
+                        <Card className="flex flex-col">
+                            <CardHeader className="flex-grow-0">
+                                <CardTitle className="h-24">
+                                    <img
+                                        src="newday.png"
+                                        alt="NewDay USA"
+                                        className="inline-block h-24"
+                                    />
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="flex-grow">
+                                <h3 className="font-semibold">
+                                    Intranet Developer Intern, IT
+                                </h3>
+                                <p className="font-light mb-3">
+                                    NewDay USA | June 2021 - August 2021 |
+                                    Fulton, MD
+                                </p>
+                                <div className="text-start">
+                                    <ul className="font-light list-outside space-y-2">
+                                        <li>
+                                            Led the development of a new
+                                            intranet portal, improving internal
+                                            communication for over 600
+                                            employees.
+                                        </li>
+                                        <li>
+                                            Orchestrated department-specific
+                                            training sessions, enhancing the
+                                            company’s content management
+                                            capabilities.
+                                        </li>
+                                        <li>
+                                            Designed and implemented custom web
+                                            elements tailored to departmental
+                                            needs, utilizing HTML and CSS.
+                                        </li>
+                                    </ul>
+                                </div>
+                            </CardContent>
+                            <CardFooter className="flex-grow-0">
+                                <span className="mr-2">Skills Used</span>
+                                <p className="font-light">
+                                    HTML, CSS, JavaScript, SharePoint
                                 </p>
                             </CardFooter>
                         </Card>

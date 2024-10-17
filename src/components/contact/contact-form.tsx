@@ -80,7 +80,9 @@ function ContactForm() {
             })
             .catch((e) => {
                 console.log(e);
-                setError("Failed to send message. Please try again later.");
+                setError(
+                    "Failed to send message. Please try again later, or contact me directly at me@armaanv.dev"
+                );
             })
             .finally(() => {
                 setLoading(false);
@@ -223,7 +225,7 @@ function ContactForm() {
                             </FormItem>
                         )}
                     />
-                    <div className="align-middle justify-between">
+                    <div className="flex align-middle justify-between">
                         <RotateLoader
                             loading={loading}
                             color={
