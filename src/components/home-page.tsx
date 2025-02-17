@@ -158,7 +158,7 @@ function Home() {
                         always excited to learn and grow.
                     </p>
                     <p className="section-subtitle text-left text-lg mt-2">
-                        Currently, I'm working at Alation, a data catalog and
+                        Most recently, I was working at Alation, a data catalog and
                         governance company, as a Software Engineering Intern on
                         the People team, working on a full-stack application
                         helping managers make data-driven decisions about
