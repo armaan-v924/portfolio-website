@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import ParallaxSection from "./animated-section";
 import NavBar from "./navigation-bar";
 import { Button } from "./ui/button";
-import { ArrowDown, ArrowRight } from "lucide-react";
+import { ArrowDown, ArrowRight, Car } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import {
@@ -158,9 +158,9 @@ function Home() {
                         always excited to learn and grow.
                     </p>
                     <p className="section-subtitle text-left text-lg mt-2">
-                        Most recently, I was working at Alation, a data catalog and
-                        governance company, as a Software Engineering Intern on
-                        the People team, working on a full-stack application
+                        Most recently, I was working at Alation, a data catalog
+                        and governance company, as a Software Engineering Intern
+                        on the People team, working on a full-stack application
                         helping managers make data-driven decisions about
                         employee compensation.
                     </p>
@@ -186,14 +186,13 @@ function Home() {
                                 University of Texas at Austin
                             </h3>
                             <CardDescription>
-                                Bachelor of Science in Electrical and Computer
-                                Engineering
+                                B.S., Electrical and Computer Engineering
                             </CardDescription>
                         </CardHeader>
                         <CardContent>
                             <p className="font-light">
                                 GPA:&nbsp;
-                                <span className="font-semibold">3.62/4.0</span>
+                                <span className="font-semibold">3.60/4.0</span>
                             </p>
                             <p className="font-light">
                                 Graduation Date:&nbsp;
@@ -207,7 +206,7 @@ function Home() {
                             <p className="font-light">
                                 Algorithms, Computer Architecture, Software
                                 Engineering, Embedded Systems, Digital Logic
-                                Design
+                                Design, Operating Systems, Data Science
                             </p>
                         </CardFooter>
                     </Card>
@@ -230,6 +229,49 @@ function Home() {
                         favorites:
                     </p>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <Card className="flex flex-col">
+                            <CardHeader className="text-left">
+                                <CardTitle>
+                                    Critical Performance Analysis of the Clang
+                                    Static Analyzer
+                                </CardTitle>
+                                <CardDescription>
+                                    Building a report on the performance of the
+                                    Clang Static Analyzer, specifically in taint
+                                    analysis, on a set of open source C/C++
+                                    programs, including OpenSSL, Redis, and
+                                    Postgres.
+                                </CardDescription>
+                            </CardHeader>
+                            <CardContent className="flex-grow text-left">
+                                <h3 className="font-semibold">
+                                    Technologies Used
+                                </h3>
+                                <p className="font-light">
+                                    C, C++, Clang, LLVM
+                                </p>
+                            </CardContent>
+                            <CardFooter className={"flex flex-row-reverse"}>
+                                <Tooltip delayDuration={0}>
+                                    <TooltipTrigger asChild>
+                                        <Button
+                                            className="group disabled:pointer-events-auto"
+                                            disabled
+                                        >
+                                            See the Report
+                                            <ArrowRight
+                                                size={16}
+                                                className="ml-2 transition-transform group-hover:-rotate-45"
+                                            />
+                                        </Button>
+                                    </TooltipTrigger>
+                                    <TooltipContent>
+                                        We're still working on this one! Check
+                                        back later.
+                                    </TooltipContent>
+                                </Tooltip>
+                            </CardFooter>
+                        </Card>
                         <Card className="flex flex-col">
                             <CardHeader className="text-left">
                                 <CardTitle>
@@ -384,7 +426,8 @@ function Home() {
                                     Total Rewards Intern, Software Engineering
                                 </h3>
                                 <p className="font-light mb-3">
-                                    Alation | February 2024 - Present | Remote
+                                    Alation | February 2024 - December 2024 |
+                                    Remote
                                 </p>
                                 <div className="text-start">
                                     <ul className="font-light list-outside space-y-2">
@@ -484,7 +527,7 @@ function Home() {
                                     Intranet Developer Intern, IT
                                 </h3>
                                 <p className="font-light mb-3">
-                                    NewDay USA | June 2021 - August 2021 |
+                                    NewDay USA | June 2020 - August 2020 |
                                     Fulton, MD
                                 </p>
                                 <div className="text-start">

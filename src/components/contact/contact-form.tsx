@@ -209,10 +209,10 @@ function ContactForm() {
                                     <Textarea
                                         {...field}
                                         placeholder={
-                                            // if is morning, say good morning, if before 4 say good afternoon, else good evening
+                                            // if is morning, say good morning, if before 5 say good afternoon, else good evening
                                             new Date().getHours() < 12
                                                 ? "Good morning!"
-                                                : new Date().getHours() < 16
+                                                : new Date().getHours() < 17
                                                 ? "Good afternoon!"
                                                 : "Good evening!"
                                         }
