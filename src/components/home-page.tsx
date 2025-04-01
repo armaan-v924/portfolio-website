@@ -2,7 +2,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import ParallaxSection from "./animated-section";
 import NavBar from "./navigation-bar";
 import { Button } from "./ui/button";
-import { ArrowDown, ArrowRight, Car } from "lucide-react";
+import { ArrowDown, ArrowRight } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { useRef } from "react";
 import {
