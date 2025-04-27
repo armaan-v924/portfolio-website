@@ -22,6 +22,8 @@ import AlationLogo from "@/images/alation.svg?react";
 import AppleLogo from "@/images/apple.svg?react";
 //@ts-ignore
 import UTSeal from "@/images/ut_austin.svg?react";
+//@ts-ignore
+import VectraLogo from "@/images/vectra.svg?react";
 
 function Home() {
     // Scroll tracking for the hero section
@@ -82,10 +84,26 @@ function Home() {
                         </p>
                         <div className="flex flex-col md:flex-row md:justify-between space-y-2">
                             <div className="flex flex-row space-x-1 md:items-center">
-                                <Button variant={"outline"} className="w-[50%]">
+                                <Button
+                                    variant={"outline"}
+                                    className="w-[50%]"
+                                    onClick={() =>
+                                        window.open(
+                                            "https://github.com/armaan-v924"
+                                        )
+                                    }
+                                >
                                     <GitHubLogoIcon className="" />
                                 </Button>
-                                <Button variant={"outline"} className="w-[50%]">
+                                <Button
+                                    variant={"outline"}
+                                    className="w-[50%]"
+                                    onClick={() =>
+                                        window.open(
+                                            "https://www.linkedin.com/in/armaan-vakharia/"
+                                        )
+                                    }
+                                >
                                     <LinkedInLogoIcon className="" />
                                 </Button>
                             </div>
@@ -147,9 +165,9 @@ function Home() {
                     nextSectionRef={eduRef}
                 >
                     <p className="section-subtitle text-left text-lg mt-4">
-                        I'm currently a student at UT Austin studying Electrical
-                        and Computer Engineering, on the software engineering
-                        track, and I'm projected to graduate in May 2025.
+                        I'm a software engineer who recently graduated from the
+                        University of Texas at Austin with my B.S. in Electrical
+                        and Computer Engineering.
                     </p>
                     <p className="section-subtitle text-left text-lg mt-2">
                         I have a passion for leveraging AI/ML to create
@@ -158,11 +176,10 @@ function Home() {
                         always excited to learn and grow.
                     </p>
                     <p className="section-subtitle text-left text-lg mt-2">
-                        Most recently, I was working at Alation, a data catalog
-                        and governance company, as a Software Engineering Intern
-                        on the People team, working on a full-stack application
-                        helping managers make data-driven decisions about
-                        employee compensation.
+                        I've recently accepted an offer to join Vectra AI as a
+                        full-time software engineer, where I will be working on
+                        building and improving their AI-driven cybersecurity
+                        solutions.
                     </p>
                 </ParallaxSection>
             </div>
@@ -201,7 +218,7 @@ function Home() {
                         </CardContent>
                         <CardFooter>
                             <p className="font-semibold">
-                                Relevant Courses:&nbsp;
+                                My favorite classes:&nbsp;
                             </p>
                             <p className="font-light">
                                 Algorithms, Computer Architecture, Software
@@ -236,7 +253,7 @@ function Home() {
                                     Static Analyzer
                                 </CardTitle>
                                 <CardDescription>
-                                    Building a report on the performance of the
+                                    Built a report on the performance of the
                                     Clang Static Analyzer, specifically in taint
                                     analysis, on a set of open source C/C++
                                     programs, including OpenSSL, Redis, and
@@ -258,7 +275,7 @@ function Home() {
                                             className="group disabled:pointer-events-auto"
                                             disabled
                                         >
-                                            See the Report
+                                            More Information
                                             <ArrowRight
                                                 size={16}
                                                 className="ml-2 transition-transform group-hover:-rotate-45"
@@ -266,8 +283,10 @@ function Home() {
                                         </Button>
                                     </TooltipTrigger>
                                     <TooltipContent>
-                                        We're still working on this one! Check
-                                        back later.
+                                        Due to agreements with our sponsor, I
+                                        can't share the report publicly. Feel
+                                        free to reach out to me if you're
+                                        interested in learning more about it.
                                     </TooltipContent>
                                 </Tooltip>
                             </CardFooter>
@@ -376,7 +395,10 @@ function Home() {
                             >
                                 <Tooltip delayDuration={0}>
                                     <TooltipTrigger asChild>
-                                        <Button className="group">
+                                        <Button
+                                            className="group disabled:pointer-events-auto"
+                                            disabled
+                                        >
                                             See the Website in Action
                                             <ArrowRight
                                                 size={16}
@@ -414,8 +436,32 @@ function Home() {
                         </h2>
                     }
                 >
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-8">
-                        <Card className="">
+                    <div className="grid grid-cols-1 gap-4 mt-8">
+                        <Card className="flex flex-col">
+                            <CardHeader className="flex-grow-0">
+                                <CardTitle className="h-24">
+                                    <VectraLogo className="inline-block mt-4 w-56 h-14" />
+                                </CardTitle>
+                            </CardHeader>
+                            <CardContent className="flex-grow">
+                                <h3 className="font-semibold">
+                                    Software Engineer
+                                </h3>
+                                <p className="font-light mb-3">
+                                    Vectra AI | Starting June 2025 | Austin, TX
+                                </p>
+                                <div className="text-start">
+                                    <ul className="font-light list-outside space-y-2">
+                                        <li>I'll let you know when I start!</li>
+                                    </ul>
+                                </div>
+                            </CardContent>
+                            {/* <CardFooter className="flex-grow-0">
+                                <span className="mr-2">Skills Used</span>
+                                <p className="font-light"></p>
+                            </CardFooter> */}
+                        </Card>
+                        <Card className="flex flex-col">
                             <CardHeader className="">
                                 <CardTitle className="h-24">
                                     <AlationLogo className="inline-block w-56 fill-alation" />
@@ -432,7 +478,7 @@ function Home() {
                                 <div className="text-start">
                                     <ul className="font-light list-outside space-y-2">
                                         <li>
-                                            Spearheading the development of a
+                                            Spearheaded the development of a
                                             proprietary internal tool at Alation
                                             designed to optimize the comparison
                                             of market data for employee
@@ -450,7 +496,7 @@ function Home() {
                                             strategies
                                         </li>
                                         <li>
-                                            Utilizing advanced programming and
+                                            Utilized advanced programming and
                                             data analysis skills to create a
                                             robust solution that automates the
                                             evaluation of compensation
