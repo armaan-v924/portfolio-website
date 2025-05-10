@@ -209,7 +209,7 @@ function Home() {
                         <CardContent>
                             <p className="font-light">
                                 GPA:&nbsp;
-                                <span className="font-semibold">3.60/4.0</span>
+                                <span className="font-semibold">3.63/4.0</span>
                             </p>
                             <p className="font-light">
                                 Graduation Date:&nbsp;
