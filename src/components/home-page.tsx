@@ -78,9 +78,9 @@ function Home() {
                         className="hero-subtitle text-left text-lg space-y-10"
                     >
                         <p>
-                            I'm a new grad software engineer focused on AI/ML,
-                            passionate about solving complex problems and
-                            creating impactful software solutions.
+                            I'm a Software Engineer passionate about building
+                            scalable data systems and applying machine learning
+                            in real-world, high-impact products.
                         </p>
                         <div className="flex flex-col md:flex-row md:justify-between space-y-2">
                             <div className="flex flex-row space-x-1 md:items-center">
@@ -165,21 +165,21 @@ function Home() {
                     nextSectionRef={eduRef}
                 >
                     <p className="section-subtitle text-left text-lg mt-4">
-                        I'm a software engineer who recently graduated from the
-                        University of Texas at Austin with my B.S. in Electrical
-                        and Computer Engineering.
+                        I’m a Software Engineer at Vectra AI, where I build and
+                        maintain scalable, distributed data systems that power
+                        AI-driven cybersecurity. My work focuses on developing
+                        high-performance data pipelines and real-time processing
+                        frameworks deployed across global infrastructure.
                     </p>
                     <p className="section-subtitle text-left text-lg mt-2">
-                        I have a passion for leveraging AI/ML to create
-                        solutions that make a difference. From full-stack
-                        development to working with data-driven projects, I’m
-                        always excited to learn and grow.
-                    </p>
-                    <p className="section-subtitle text-left text-lg mt-2">
-                        I've recently accepted an offer to join Vectra AI as a
-                        full-time software engineer, where I will be working on
-                        building and improving their AI-driven cybersecurity
-                        solutions.
+                        I graduated from the University of Texas at Austin with
+                        a B.S. in Electrical and Computer Engineering, where I
+                        explored applied machine learning, systems programming,
+                        and compiler design. I’m passionate about solving
+                        complex engineering problems—especially those at the
+                        intersection of data, infrastructure, and intelligent
+                        systems—and continuously seek opportunities to build
+                        impactful, production-ready software.
                     </p>
                 </ParallaxSection>
             </div>
