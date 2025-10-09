@@ -448,18 +448,54 @@ function Home() {
                                     Software Engineer
                                 </h3>
                                 <p className="font-light mb-3">
-                                    Vectra AI | Starting June 2025 | Austin, TX
+                                    Vectra AI | Since June 2025 | Austin, TX
                                 </p>
                                 <div className="text-start">
                                     <ul className="font-light list-outside space-y-2">
-                                        <li>I'll let you know when I start!</li>
+                                        <li>
+                                            Improve and maintain JetStream,
+                                            Vectra AI’s internal real-time data
+                                            processing and execution framework
+                                            built in Python and deployed on
+                                            Kubernetes, supporting
+                                            fault-tolerant, scalable processing
+                                            of millions of data points across
+                                            six global regions with cross-region
+                                            replication and synchronization.
+                                        </li>
+                                        <li>
+                                            Developing a new Snapshot ETL
+                                            pipeline within JetStream to
+                                            consolidate legacy data collection
+                                            and processing systems,
+                                            incorporating Delta tables on S3 and
+                                            SCD Type 2 logic to improve compute
+                                            efficiency and streamline data
+                                            access for detection algorithms
+                                            running every 15 minutes.
+                                        </li>
+                                        <li>
+                                            Ensure system reliability as part of
+                                            the on-call rotation, proactively
+                                            identifying and mitigating a
+                                            large-scale data backlog that
+                                            threatened SLOs. Prevented downtime
+                                            and preserved detection accuracy for
+                                            customer-facing systems by triaging
+                                            and resolving issues using
+                                            OpenSearch, Grafana/Prometheus, and
+                                            PagerDuty.
+                                        </li>
                                     </ul>
                                 </div>
                             </CardContent>
-                            {/* <CardFooter className="flex-grow-0">
-                                <span className="mr-2">Skills Used</span>
-                                <p className="font-light"></p>
-                            </CardFooter> */}
+                            <CardFooter className="flex-grow-0">
+                                <span className="mr-2">Tech Stack</span>
+                                <p className="font-light">
+                                    Python, Docker, Kubernetes, AWS, Grafana,
+                                    PagerDuty, JIRA
+                                </p>
+                            </CardFooter>
                         </Card>
                         <Card className="flex flex-col">
                             <CardHeader className="">
