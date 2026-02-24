@@ -22,4 +22,9 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Keep output compatible with older Firefox versions.
+    target: "es2020",
+    cssTarget: "firefox115",
+  },
 })
