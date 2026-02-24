@@ -3,7 +3,7 @@ import ParallaxSection from "./animated-section";
 import NavBar from "./navigation-bar";
 import { Button } from "./ui/button";
 import { ArrowDown, ArrowRight } from "lucide-react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router";
 import { useRef } from "react";
 import {
     Card,
@@ -16,13 +16,13 @@ import {
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
 import { Tooltip, TooltipContent, TooltipTrigger } from "./ui/tooltip";
 
-//@ts-ignore
+// @ts-expect-error -- svg module typing handled by vite-plugin-svgr
 import AlationLogo from "@/images/alation.svg?react";
-//@ts-ignore
+// @ts-expect-error -- svg module typing handled by vite-plugin-svgr
 import AppleLogo from "@/images/apple.svg?react";
-//@ts-ignore
+// @ts-expect-error -- svg module typing handled by vite-plugin-svgr
 import UTSeal from "@/images/ut_austin.svg?react";
-//@ts-ignore
+// @ts-expect-error -- svg module typing handled by vite-plugin-svgr
 import VectraLogo from "@/images/vectra.svg?react";
 
 function Home() {

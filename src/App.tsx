@@ -4,7 +4,7 @@ import Home from "@/components/home-page";
 import Contact from "@/components/contact/contact-page";
 
 import "@/App.css";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router";
 import { TooltipProvider } from "./components/ui/tooltip";
 
 function App() {

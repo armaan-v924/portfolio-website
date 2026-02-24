@@ -5,8 +5,8 @@ import { cn } from "@/lib/utils";
 
 import { motion, useReducedMotion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { useLayoutEffect, useRef, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useNavigate } from "react-router";
 
 interface NavBarProps {
     currentPage: string;
@@ -14,15 +14,15 @@ interface NavBarProps {
     id?: string;
 }
 
+const pages = [
+    { name: "Home", route: "/" },
+    { name: "Let's Talk", route: "/contact" },
+];
+
 function NavBar({ currentPage, className }: NavBarProps) {
     const navigate = useNavigate();
     const [hoveredPage, setHoveredPage] = useState<string | null>(null);
     const reducedMotion = useReducedMotion();
-
-    const pages = [
-        { name: "Home", route: "/" },
-        { name: "Let's Talk", route: "/contact" },
-    ];
 
     // Refs
     const containerRef = useRef<HTMLDivElement | null>(null);
@@ -32,7 +32,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
     const [xPosition, setXPosition] = useState<number | null>(null);
 
     // Function to calculate and set x position
-    const calculatePosition = (pageName: string) => {
+    const calculatePosition = useCallback((pageName: string) => {
         const buttonIndex = pages.findIndex((page) => page.name === pageName);
         if (buttonIndex === -1) return;
 
@@ -43,14 +43,14 @@ function NavBar({ currentPage, className }: NavBarProps) {
             const relativeX = button.offsetLeft - button.offsetWidth / 7 - 8;
             setXPosition(relativeX);
         }
-    };
+    }, []);
 
     // Function to delay position calculation using requestAnimationFrame
-    const delayedCalculatePosition = (pageName: string) => {
+    const delayedCalculatePosition = useCallback((pageName: string) => {
         requestAnimationFrame(() => {
             calculatePosition(pageName);
         });
-    };
+    }, [calculatePosition]);
 
     // Set initial position on mount and when currentPage changes
     useLayoutEffect(() => {
@@ -59,7 +59,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
         }, 100);
 
         return () => clearTimeout(timeoutId);
-    }, []);
+    }, [currentPage, delayedCalculatePosition]);
 
     // Move arrow to hovered page or back to current page
     useLayoutEffect(() => {
@@ -68,7 +68,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
         } else {
             delayedCalculatePosition(currentPage);
         }
-    }, [hoveredPage, currentPage]);
+    }, [hoveredPage, currentPage, delayedCalculatePosition]);
 
     // Recalculate position on window resize
     useLayoutEffect(() => {
@@ -82,7 +82,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
 
         window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [hoveredPage, currentPage]);
+    }, [hoveredPage, currentPage, delayedCalculatePosition]);
 
     return (
         <div

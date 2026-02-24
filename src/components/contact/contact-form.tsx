@@ -2,7 +2,7 @@ import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ArrowRight } from "lucide-react";
 import { useForm } from "react-hook-form";
-import z from "zod";
+import * as z from "zod";
 import { RotateLoader } from "react-spinners";
 
 import { Button } from "@/components/ui/button";
@@ -56,7 +56,7 @@ function ContactForm() {
         if (preservedForm) {
             form.reset(JSON.parse(preservedForm));
         }
-    }, []);
+    }, [form]);
 
     function onSubmit(data: z.infer<typeof formSchema>) {
         setLoading(true);
