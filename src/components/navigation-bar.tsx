@@ -18,6 +18,7 @@ const pages = [
     { name: "Home", route: "/" },
     { name: "Let's Talk", route: "/contact" },
 ];
+const ARROW_GAP = 20;
 
 function NavBar({ currentPage, className }: NavBarProps) {
     const navigate = useNavigate();
@@ -27,6 +28,7 @@ function NavBar({ currentPage, className }: NavBarProps) {
     // Refs
     const containerRef = useRef<HTMLDivElement | null>(null);
     const buttonRefs = useRef<(HTMLButtonElement | null)[]>([]);
+    const textRefs = useRef<(HTMLSpanElement | null)[]>([]);
 
     // State for arrow's x position
     const [xPosition, setXPosition] = useState<number | null>(null);
@@ -37,10 +39,13 @@ function NavBar({ currentPage, className }: NavBarProps) {
         if (buttonIndex === -1) return;
 
         const button = buttonRefs.current[buttonIndex];
+        const text = textRefs.current[buttonIndex];
         const container = containerRef.current;
 
-        if (button && container) {
-            const relativeX = button.offsetLeft - button.offsetWidth / 7 - 8;
+        if (button && container && text) {
+            const textRect = text.getBoundingClientRect();
+            const containerRect = container.getBoundingClientRect();
+            const relativeX = textRect.left - containerRect.left - ARROW_GAP;
             setXPosition(relativeX);
         }
     }, []);
@@ -126,10 +131,20 @@ function NavBar({ currentPage, className }: NavBarProps) {
                             className="w-16 relative hover:bg-inherit hover:text-inherit"
                             onMouseEnter={() => setHoveredPage(page.name)}
                             onMouseLeave={() => setHoveredPage(null)}
+                            onFocus={() => setHoveredPage(page.name)}
+                            onBlur={() => setHoveredPage(null)}
                             onClick={() => navigate(page.route)}
-                            ref={(el) => (buttonRefs.current[index] = el)}
+                            ref={(el) => {
+                                buttonRefs.current[index] = el;
+                            }}
                         >
-                            {page.name}
+                            <span
+                                ref={(el) => {
+                                    textRefs.current[index] = el;
+                                }}
+                            >
+                                {page.name}
+                            </span>
                         </Button>
                     ))}
                 </div>

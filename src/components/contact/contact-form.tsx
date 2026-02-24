@@ -1,15 +1,13 @@
 import emailjs from "@emailjs/browser";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ArrowRight } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, Loader2 } from "lucide-react";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
-import { RotateLoader } from "react-spinners";
 
 import { Button } from "@/components/ui/button";
 import {
     Form,
     FormControl,
-    FormDescription,
     FormField,
     FormItem,
     FormLabel,
@@ -110,7 +108,7 @@ function ContactForm() {
                         name="email"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>
+                                <FormLabel className="minor-heading pl-1">
                                     Email
                                     <span className="text-destructive">*</span>
                                 </FormLabel>
@@ -121,10 +119,6 @@ function ContactForm() {
                                         placeholder="hello@howdy.com"
                                     />
                                 </FormControl>
-                                <FormDescription>
-                                    Please enter your email address, so I know
-                                    how to get back to you.
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -134,7 +128,7 @@ function ContactForm() {
                         name="name"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>
+                                <FormLabel className="minor-heading pl-1">
                                     Name
                                     <span className="text-destructive">*</span>
                                 </FormLabel>
@@ -145,9 +139,6 @@ function ContactForm() {
                                         placeholder={"Humany McPersonface"}
                                     />
                                 </FormControl>
-                                <FormDescription>
-                                    Please enter your preferred name.
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -157,7 +148,7 @@ function ContactForm() {
                         name="company"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>Company</FormLabel>
+                                <FormLabel className="minor-heading pl-1">Company</FormLabel>
                                 <FormControl>
                                     <Input
                                         {...field}
@@ -165,10 +156,6 @@ function ContactForm() {
                                         placeholder={"Company Inc."}
                                     />
                                 </FormControl>
-                                <FormDescription>
-                                    Please enter your company's name, if
-                                    applicable.
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -178,7 +165,7 @@ function ContactForm() {
                         name="subject"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>
+                                <FormLabel className="minor-heading pl-1">
                                     Subject
                                     <span className="text-destructive">*</span>
                                 </FormLabel>
@@ -189,9 +176,6 @@ function ContactForm() {
                                         placeholder="Hello!"
                                     />
                                 </FormControl>
-                                <FormDescription>
-                                    Please enter the subject of your message.
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -201,7 +185,7 @@ function ContactForm() {
                         name="message"
                         render={({ field }) => (
                             <FormItem>
-                                <FormLabel>
+                                <FormLabel className="minor-heading pl-1">
                                     Message
                                     <span className="text-destructive">*</span>
                                 </FormLabel>
@@ -218,42 +202,31 @@ function ContactForm() {
                                         }
                                     />
                                 </FormControl>
-                                <FormDescription>
-                                    Please enter your message.
-                                </FormDescription>
                                 <FormMessage />
                             </FormItem>
                         )}
                     />
-                    <div className="flex align-middle justify-between">
-                        <RotateLoader
-                            loading={loading}
-                            color={
-                                window.document.documentElement.classList.contains(
-                                    "dark"
-                                )
-                                    ? "#fff"
-                                    : "#000"
-                            }
-                            speedMultiplier={0.75}
-                            size={10}
-                            className="inline-block"
-                        />
-                        {error ? (
-                            <>
-                                <p className="text-destructive font-bold">
+                    <div className="flex flex-col-reverse gap-3 sm:flex-row sm:items-start sm:justify-between">
+                        <div className="min-h-10 sm:flex-1">
+                            {loading && (
+                                <p className="inline-flex items-center gap-2 rounded-md border border-border/60 bg-card/20 px-3 py-2 text-sm text-muted-foreground">
+                                    <Loader2 size={14} className="animate-spin" />
+                                    Sending message...
+                                </p>
+                            )}
+                            {!loading && error && (
+                                <p className="inline-flex items-start gap-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-2 text-sm text-destructive">
+                                    <AlertTriangle size={14} className="mt-0.5 shrink-0" />
                                     {error}
                                 </p>
-                            </>
-                        ) : message ? (
-                            <>
-                                <p className="text-accent font-bold">
+                            )}
+                            {!loading && !error && message && (
+                                <p className="inline-flex items-center gap-2 rounded-md border border-accent/40 bg-accent/10 px-3 py-2 text-sm text-accent">
+                                    <CheckCircle2 size={14} className="shrink-0" />
                                     {message}
                                 </p>
-                            </>
-                        ) : (
-                            <span />
-                        )}
+                            )}
+                        </div>
                         <Button
                             type="submit"
                             className="float-right group hover:shadow-glow transition-shadow hover:bg-primary self-end"
