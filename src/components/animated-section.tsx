@@ -1,4 +1,4 @@
-import React, { useRef, useState, useLayoutEffect } from "react";
+import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown } from "lucide-react";
 
@@ -6,7 +6,8 @@ interface ParallaxSectionProps {
     header: React.ReactNode;
     children: React.ReactNode;
     showArrow?: boolean;
-    nextSectionRef?: React.RefObject<HTMLDivElement>;
+    nextSectionRef?: React.RefObject<HTMLDivElement | null>;
+    fullHeight?: boolean;
 }
 
 const ParallaxSection: React.FC<ParallaxSectionProps> = ({
@@ -14,43 +15,19 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
     children,
     showArrow = false,
     nextSectionRef,
+    fullHeight = false,
 }) => {
     const ref = useRef<HTMLDivElement>(null);
 
-    // Get the vertical scroll position
-    const { scrollY } = useScroll();
+    const { scrollYProgress } = useScroll({
+        target: ref,
+        offset: ["start end", "end start"],
+    });
 
-    // States to hold the element's position and height
-    const [elementTop, setElementTop] = useState(0);
-    const [elementHeight, setElementHeight] = useState(0);
-
-    // Measure the element's position and height
-    useLayoutEffect(() => {
-        const measureElement = () => {
-            if (ref.current) {
-                const rect = ref.current.getBoundingClientRect();
-                setElementTop(rect.top + window.scrollY);
-                setElementHeight(rect.height);
-            }
-        };
-
-        measureElement();
-        window.addEventListener("resize", measureElement);
-
-        return () => {
-            window.removeEventListener("resize", measureElement);
-        };
-    }, []);
-
-    // Calculate scroll progress
-    const start = elementTop - window.innerHeight;
-    const end = elementTop + elementHeight;
-    const scrollProgress = useTransform(scrollY, [start, end], [0, 1]);
-
-    const yHeader = useTransform(scrollProgress, [0, 1], [-20, 20]);
-    const yContent = useTransform(scrollProgress, [0, 1], [-50, 50]);
+    const yHeader = useTransform(scrollYProgress, [0, 1], [-20, 20]);
+    const yContent = useTransform(scrollYProgress, [0, 1], [-50, 50]);
     const opacity = useTransform(
-        scrollProgress,
+        scrollYProgress,
         [0, 0.25, 0.75, 1],
         [0, 1, 1, 0]
     );
@@ -61,7 +38,7 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
         transition: {
             duration: 1.5,
             repeat: Infinity,
-            ease: "easeInOut",
+            ease: [0.42, 0, 0.58, 1] as const,
         },
     };
 
@@ -73,7 +50,13 @@ const ParallaxSection: React.FC<ParallaxSectionProps> = ({
 
     return (
         <div ref={ref} className="relative container max-w-[1280px] mx-auto">
-            <div className="min-h-screen flex flex-col justify-center">
+            <div
+                className={
+                    fullHeight
+                        ? "min-h-screen flex flex-col justify-center"
+                        : "py-16 md:py-20 flex flex-col justify-center"
+                }
+            >
                 <motion.div style={{ y: yHeader, opacity }}>
                     {header}
                 </motion.div>
